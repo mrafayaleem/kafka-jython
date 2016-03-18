@@ -45,6 +45,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.DS_Store
+
 # PYTHON
 # Byte-compiled / optimized / DLL files
 __pycache__/
