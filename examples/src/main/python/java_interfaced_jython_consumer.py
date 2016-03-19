@@ -1,4 +1,4 @@
-from kafkajython.examples import ConsumerGroupExample
+from kafkajython import ConsumerGroupExample
 
 
 def run():

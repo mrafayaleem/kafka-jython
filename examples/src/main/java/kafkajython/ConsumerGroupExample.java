@@ -1,4 +1,4 @@
-package kafkajython.examples;
+package kafkajython;
 
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.KafkaStream;
