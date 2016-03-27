@@ -135,11 +135,12 @@ class Stats(object):
     @staticmethod
     def percentiles(latencies, count, percentiles):
         size = min(count, len(latencies))
-        sorted_latencies = latencies[:size].sort()
-        values = [1 * len(percentiles)]
+        latencies = latencies[:size]
+        latencies.sort()
+        values = [1] * len(percentiles)
         for i in xrange(len(percentiles)):
             index = int(percentiles[i] * size)
-            values[i] = sorted_latencies[index]
+            values[i] = latencies[index]
 
         return values
 
