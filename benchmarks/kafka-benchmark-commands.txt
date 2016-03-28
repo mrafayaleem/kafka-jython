@@ -2,21 +2,32 @@
 
 ###Setup
 ```
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test-rep-one --partitions 6 --replication-factor 1
+bin/kafka-topics.sh --zookeeper 172.31.4.214:2181 --create --topic test-rep-one --partitions 6 --replication-factor 1
 ```
 ```
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test --partitions 6 --replication-factor 3
+bin/kafka-topics.sh --zookeeper 172.31.4.214:2181 --create --topic test --partitions 6 --replication-factor 3
 ```
 
 ###Single thread, no replication
+##### REF
 ```
-bin/kafka-run-class.sh org.apache.kafka.clients.tools.ProducerPerformance test 50000000 100 -1 acks=1 localhost:9092 buffer.memory=67108864 batch.size=8196
+bin/kafka-run-class.sh org.apache.kafka.clients.tools.ProducerPerformance test-rep-one 50000000 100 -1 acks=1 172.31.15.249:9092 buffer.memory=67108864 batch.size=8196
 ```
+##### Pure Java
 ```
-java -cp ".:./libs/*" kafkajython.benchmarks.ProducerPerformance --topic test --num-records 50000000 --record-size 100 --throughput -1 --producer-props acks=1 bootstrap.servers=localhost:9092 buffer.memory=67108864 batch.size=8196
+java -cp ".:./libs/*" kafkajython.benchmarks.ProducerPerformance --topic test-rep-one --num-records 50000000 --record-size 100 --throughput -1 --producer-props acks=1 bootstrap.servers= 172.31.15.249:9092 buffer.memory=67108864 batch.size=8196
 ```
+##### Java interfaced Jython
 ```
-python benchmarks/src/main/python/producer_performance.py --topic test --num-records 50000000 --record-size 100 --producer-props acks=1 bootstrap_servers=localhost:9092 buffer_memory=67108864 batch_size=8196
+jython -J-cp ".:./libs/*" benchmarks/src/main/jython/java_interfaced_jython_prodcuer.py --topic test-rep-one --throughput -1 --num-records 50000000 --record-size 100 --producer-props acks=1 bootstrap.servers= 172.31.15.249:9092 buffer.memory=67108864 batch.size=8196
+```
+##### Pure Jython
+```
+jython -J-cp ".:./libs/*" benchmarks/src/main/jython/producer_performance.py --topic test-rep-one --num-records 50000000 --record-size 100 --producer-props acks=1 bootstrap.servers= 172.31.15.249:9092 buffer.memory=67108864 batch.size=8196
+```
+##### Python
+```
+python benchmarks/src/main/python/producer_performance.py --topic test-rep-one --num-records 50000000 --record-size 100 --producer-props acks=1 bootstrap_servers= 172.31.15.249:9092 buffer_memory=67108864 batch_size=8196
 ```
 ###Single-thread, async 3x replication
 ```
