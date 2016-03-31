@@ -1,1 +1,2 @@
 futures==3.0.5
+kafka-python==1.0.2
