@@ -166,14 +166,14 @@ def get_args_parser():
 
     parser.add_argument(
             '--topic', type=str,
-            help='number of messages to produce',
+            help='messages will be sent to this topic',
             required=True,
             action='store',
             metavar='TOPIC',
     )
     parser.add_argument(
             '--num-records', type=long,
-            help='Port number',
+            help='number of messages to produce',
             required=True,
             action='store',
             metavar='NUM-RECORDS',
